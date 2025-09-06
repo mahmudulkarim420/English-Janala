@@ -1,11 +1,11 @@
 const createElements = (array) => {
-  const htmlElements = array.map((element) => `<span class="btn">${element}</span>`)
+  const htmlElements = array.map((element) => `<span class="btn bg-sky-100 font-light">${element}</span>`)
   return htmlElements.join(" ");
 };
 
 function pronounceWord(word) {
   const utterance = new SpeechSynthesisUtterance(word);
-  utterance.lang = "en-EN"; // English
+  utterance.lang = "en-EN";
   window.speechSynthesis.speak(utterance);
 }
 
@@ -72,7 +72,7 @@ const loadWordDetail = (id) => {
     .then((res) => res.json())
     .then((json) => displayDetailWord(json.data))
     .catch((err) => console.error(err))
-    .finally(() => loadingSpinner(false)); // spinner hide
+    .finally(() => loadingSpinner(false)); 
 };
 
 const displayDetailWord = (word) => {
@@ -94,7 +94,7 @@ const displayDetailWord = (word) => {
         <div
         <div class="">${createElements(word.synonyms)}</div>
       </div>
-  `
+  `;   
   document.getElementById("my_modal_5").showModal()
 };
 
