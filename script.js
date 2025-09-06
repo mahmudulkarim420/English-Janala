@@ -3,6 +3,12 @@ const createElements = (array) => {
   return htmlElements.join(" ");
 };
 
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+}
+
 const loadingSpinner = (status) => {
   if(status === true){
     document.getElementById('spinner').classList.remove('hidden');
@@ -107,6 +113,7 @@ const displayLevelWord = (words) => {
          নেক্সট Lesson এ যান
         </h2>
       </div>`;
+      loadingSpinner()
       return;
     }
 
@@ -121,9 +128,26 @@ const displayLevelWord = (words) => {
 
         <div class="flex items-center justify-between">
           <button onclick="loadWordDetail(${word.id})" class="btn bg-[#cfe8ff] text-[#374957] hover:bg-[#9bc4e8]"><i class="fa-solid fa-circle-info"></i></button>
-          <button class="btn bg-[#cfe8ff] text-[#374957] hover:bg-[#9bc4e8]"><i class="fa-solid fa-volume-high"></i></button>
+          <button onclick="pronounceWord('${word.word}')" class="btn bg-[#cfe8ff] text-[#374957] hover:bg-[#9bc4e8]"><i class="fa-solid fa-volume-high"></i></button>
         </div>
       </div>`;
         wordContainer.append(card);
     });
 }
+
+
+document.getElementById("search-btn").addEventListener("click", () => {
+  removeActive()
+  const input = document.getElementById("search-input");
+  const searchValue = input.value.trim().toLowerCase();
+  
+
+  fetch("https://openapi.programming-hero.com/api/words/all")
+  .then((res) => res.json())
+  .then((json) => {
+    const allWord = json.data;
+    
+    const filterWords = allWord.filter( word => word.word.toLowerCase().includes(searchValue));
+    displayLevelWord(filterWords)
+  })
+})
