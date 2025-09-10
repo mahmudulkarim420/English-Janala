@@ -5,7 +5,18 @@ const createElements = (array) => {
 
 function pronounceWord(word) {
   const utterance = new SpeechSynthesisUtterance(word);
-  utterance.lang = "en-EN";
+
+ 
+  utterance.lang = "en-US";
+
+
+  const voices = window.speechSynthesis.getVoices();
+  if (voices.length > 0) {
+    utterance.voice = voices[0]; 
+  }
+
+  
+  window.speechSynthesis.cancel(); // clear previous
   window.speechSynthesis.speak(utterance);
 }
 
