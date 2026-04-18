@@ -98,3 +98,9 @@ input[type="text"] {
 input[type="text"]:focus {
   transform: translateY(-1px);
 }
+
+#pagination-section button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}

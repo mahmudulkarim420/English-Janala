@@ -116,26 +116,19 @@ const displayDetailWord = (word) => {
   document.getElementById("my_modal_5").showModal();
 };
 
-const displayLevelWord = (words) => {
+let currentPage = 1;
+let paginatedWords = [];
+const itemsPerPage = 5;
+
+const renderPage = () => {
   const wordContainer = document.getElementById("word-container");
   wordContainer.innerHTML = "";
 
-  if (words.length === 0) {
-    wordContainer.innerHTML = `
-      <div class=" text-center col-span-full py-10 space-y-6 font-bangla">
-      <img class="mx-auto" src="./assets/alert-error.png" alt="">
-        <p class="text-gray-500 text-[14px]">
-          এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।
-        </p>
-        <h2 class="text-2xl font-semibold">
-         নেক্সট Lesson এ যান
-        </h2>
-      </div>`;
-    loadingSpinner();
-    return;
-  }
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageWords = paginatedWords.slice(start, end);
 
-  words.forEach((word) => {
+  pageWords.forEach((word) => {
     const card = document.createElement("div");
     card.innerHTML = `
               <div class=" bg-white rounded-xl shadow-sm text-center py-10 px-5 space-y-5">
@@ -151,6 +144,54 @@ const displayLevelWord = (words) => {
       </div>`;
     wordContainer.append(card);
   });
+
+  updatePaginationControls();
+};
+
+const updatePaginationControls = () => {
+  const totalPages = Math.ceil(paginatedWords.length / itemsPerPage);
+  document.getElementById("page-info").textContent = `Page ${currentPage} of ${totalPages}`;
+  document.getElementById("prev-btn").disabled = currentPage === 1;
+  document.getElementById("next-btn").disabled = currentPage === totalPages || totalPages === 0;
+};
+
+const changePage = (direction) => {
+  const totalPages = Math.ceil(paginatedWords.length / itemsPerPage);
+  const newPage = currentPage + direction;
+  if (newPage >= 1 && newPage <= totalPages) {
+    currentPage = newPage;
+    renderPage();
+    document
+      .getElementById("word-container")
+      .scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+};
+
+const displayLevelWord = (words) => {
+  const wordContainer = document.getElementById("word-container");
+  const paginationSection = document.getElementById("pagination-section");
+  wordContainer.innerHTML = "";
+
+  if (words.length === 0) {
+    paginationSection.classList.add("hidden");
+    wordContainer.innerHTML = `
+      <div class=" text-center col-span-full py-10 space-y-6 font-bangla">
+      <img class="mx-auto" src="./assets/alert-error.png" alt="">
+        <p class="text-gray-500 text-[14px]">
+          এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।
+        </p>
+        <h2 class="text-2xl font-semibold">
+         নেক্সট Lesson এ যান
+        </h2>
+      </div>`;
+    loadingSpinner();
+    return;
+  }
+
+  paginatedWords = words;
+  currentPage = 1;
+  paginationSection.classList.remove("hidden");
+  renderPage();
 };
 
 document.getElementById("search-btn").addEventListener("click", () => {
