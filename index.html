@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,16 +7,9 @@
     <!-- FavIcon -->
     <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon" />
     <!-- FontAwesome -->
-    <script
-      src="https://kit.fontawesome.com/bf957ba0f5.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/bf957ba0f5.js" crossorigin="anonymous"></script>
     <!-- DaisyUi -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@5"
-      rel="stylesheet"
-      type="text/css"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <!-- Tailwind Css -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- Fonts -->
@@ -62,19 +55,13 @@
               class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a href="" class="">
-                  <i class="fa-solid fa-circle-question"></i>FAQ</a
-                >
+                <a href="" class=""> <i class="fa-solid fa-circle-question"></i>FAQ</a>
               </li>
               <li>
-                <a href="" class="">
-                  <i class="fa-solid fa-book-open"></i>Learn</a
-                >
+                <a href="" class=""> <i class="fa-solid fa-book-open"></i>Learn</a>
               </li>
               <li>
-                <a href="" class="">
-                  <i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a
-                >
+                <a href="" class=""> <i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a>
               </li>
             </ul>
           </div>
@@ -111,13 +98,10 @@
       class="flex md:flex-row flex-col-reverse justify-between items-center gap-10 py-5 w-11/12 mx-auto"
     >
       <div class="content flex-1 text-center md:text-left">
-        <h2 class="text-4xl font-bold mb-8">
-          <span class="text-sky-300">English</span> is Easy!!
-        </h2>
+        <h2 class="text-4xl font-bold mb-8"><span class="text-sky-300">English</span> is Easy!!</h2>
         <p class="font-bangla">
-          আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা
-          আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে
-          অন্য একটি Level এ
+          আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা আপনার দক্ষতা বাড়াতে চান,
+          আমাদের Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ
         </p>
       </div>
       <div class="img flex-1">
@@ -131,65 +115,62 @@
         <span class="text-sky-300">let's</span> Learn Vocabularies
       </h2>
       <div id="level-container" class="flex gap-5 flex-wrap justify-center"></div>
+      <div id="level-spinner" class="flex justify-center py-5">
+        <div
+          class="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"
+        ></div>
+      </div>
     </section>
-
 
     <section class="flex justify-center my-10">
       <div class="join">
-  <div>
-    <label class="input validator join-item">
-      
-
-      <input id="search-input" class="" type="text" placeholder="Search Vocabulary" required />
-    </label>
-    
-  </div>
-  <button id="search-btn" class="btn btn-primary join-item">Search</button>
-</div>
+        <div>
+          <label class="input validator join-item">
+            <input
+              id="search-input"
+              class=""
+              type="text"
+              placeholder="Search Vocabulary"
+              required
+            />
+          </label>
+        </div>
+        <button id="search-btn" class="btn btn-primary join-item">Search</button>
+      </div>
     </section>
 
     <!-- Lesson Card Section -->
-  <section id="word-container" 
-  class="bg-gray-100 p-10 w-11/12 mx-auto my-10 grid grid-cols-1 md:grid-cols-3 gap-5">
+    <section
+      id="word-container"
+      class="bg-gray-100 p-10 w-11/12 mx-auto my-10 grid grid-cols-1 md:grid-cols-3 gap-5"
+    >
+      <div class="text-center col-span-full py-10 space-y-6 font-bangla">
+        <p class="text-gray-500 text-[14px]">আপনি এখনো কোন Lesson Select করেন ন</p>
+        <h2 class="text-2xl font-semibold">একটি Lesson Select করুন।</h2>
+      </div>
+    </section>
 
-  <div class="text-center col-span-full py-10 space-y-6 font-bangla">
-    <p class="text-gray-500 text-[14px]">
-      আপনি এখনো কোন Lesson Select করেন ন
-    </p>
-    <h2 class="text-2xl font-semibold">
-      একটি Lesson Select করুন।
-    </h2>
-  </div>
+    <section class="flex items-center justify-center py-10">
+      <div
+        id="spinner"
+        class="hidden w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"
+      ></div>
+    </section>
 
-</section>
+    <!-- Open the modal using ID.showModal() method -->
+    <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+    <dialog id="my_modal_5" class="modal">
+      <div class="modal-box w-11/12 max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl">
+        <div id="details-container" class="space-y-5"></div>
 
-
-
-     
-
-
-<section class="flex items-center justify-center py-10">
-  <div id="spinner" class="hidden w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-</section>
-
-
- <!-- Open the modal using ID.showModal() method -->
-<!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
-<dialog id="my_modal_5" class="modal">
-  <div class="modal-box w-11/12 max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl">
-    <div id="details-container" class="space-y-5">
-      
-    </div>
-
-    <form method="dialog" class="mt-5">
-      <!-- button close করবে -->
-      <button 
-        class="btn w-full sm:w-auto bg-[#422AD5] text-white rounded-lg font-medium">
-        Complete Learning
-      </button>
-    </form>
-  </div>
-</dialog>
+        <form method="dialog" class="mt-5">
+          <!-- button close করবে -->
+          <button class="btn w-full sm:w-auto bg-[#422AD5] text-white rounded-lg font-medium">
+            Complete Learning
+          </button>
+        </form>
+      </div>
+    </dialog>
 
     <script src="script.js"></script>
   </body>

@@ -1,11 +1,100 @@
-*{
-    font-family: "Poppins", sans-serif;
+* {
+  font-family: "Poppins", sans-serif;
 }
-.font-bangla{
-    font-family: "Hind Siliguri", sans-serif;
+.font-bangla {
+  font-family: "Hind Siliguri", sans-serif;
 }
 
-.active{
-    background-color: #422AD5;
-    color: white;
+.active {
+  background-color: #422ad5;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn {
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+#word-container > div {
+  animation: fadeInUp 0.4s ease forwards;
+  opacity: 0;
+}
+
+#word-container > div:nth-child(1) {
+  animation-delay: 0.05s;
+}
+#word-container > div:nth-child(2) {
+  animation-delay: 0.1s;
+}
+#word-container > div:nth-child(3) {
+  animation-delay: 0.15s;
+}
+#word-container > div:nth-child(4) {
+  animation-delay: 0.2s;
+}
+#word-container > div:nth-child(5) {
+  animation-delay: 0.25s;
+}
+#word-container > div:nth-child(6) {
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#level-container button {
+  transition: all 0.25s ease;
+}
+
+#level-container button:hover {
+  transform: scale(1.05);
+}
+
+#spinner,
+#level-spinner {
+  transition: opacity 0.3s ease;
+}
+
+#level-spinner.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-box {
+  animation: modalIn 0.3s ease;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+input[type="text"] {
+  transition: all 0.2s ease;
+}
+
+input[type="text"]:focus {
+  transform: translateY(-1px);
 }
