@@ -7,16 +7,24 @@ const createElements = (array) => {
 
 function pronounceWord(word) {
   const utterance = new SpeechSynthesisUtterance(word);
-
   utterance.lang = "en-US";
 
-  const voices = window.speechSynthesis.getVoices();
-  if (voices.length > 0) {
-    utterance.voice = voices[0];
-  }
+  const speakWithVoice = () => {
+    const voices = window.speechSynthesis.getVoices();
+    const englishVoice = voices.find((v) => v.lang.startsWith("en")) || voices[0];
+    if (englishVoice) {
+      utterance.voice = englishVoice;
+    }
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
+  };
 
-  window.speechSynthesis.cancel(); // clear previous
-  window.speechSynthesis.speak(utterance);
+  // Voices load asynchronously - wait if not ready
+  if (window.speechSynthesis.getVoices().length === 0) {
+    window.speechSynthesis.onvoiceschanged = speakWithVoice;
+  } else {
+    speakWithVoice();
+  }
 }
 
 const loadingSpinner = (status) => {
